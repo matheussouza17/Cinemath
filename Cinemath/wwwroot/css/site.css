@@ -20,3 +20,101 @@ html {
 body {
   margin-bottom: 60px;
 }
+.text-right{
+    text-align:right;
+}
+.btn-detail {
+  margin-top: 5px;
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+.btn-detail:hover {
+  
+  background-color: rgb(230, 230, 230);
+  color: black;
+  border-color: black;
+}
+.btn-delete{
+    background-color:red;
+    border-color: white;
+    
+}
+.btn-delete:hover {
+    background-color: rgb(128, 7, 7);
+    border-color: white !important;
+}
+
+.btn-save{
+  margin-top: 5px;
+  background-color:rgb(21, 255, 0);
+  border-color: white;
+  
+}
+.btn-save:hover {
+  background-color: rgb(18, 180, 3);
+  border-color: white !important;
+}
+.btn-back {
+  background-color: white;
+  color: black;
+  border-color: black;
+  margin-top: 5px;
+}
+.btn-detail:hover {
+background-color: rgb(230, 230, 230);
+color: black;
+border-color: black;
+}
+.align-right{
+  text-align: right !important;
+}
+.form-login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;  
+}
+.title-login{
+  margin-top: 100px;
+  text-align: center;
+}
+.btn-login {
+    width: 100% !important;
+    border-bottom: 2px solid black;
+}
+
+.div-padding{
+  padding-bottom: 20px;
+}
+.linking{
+  text-decoration: underline !important;
+  color: #258cfb !important;
+}
+.linking:hover{
+  color: blue !important;
+}
+.img-movie{
+  width: 15%;
+  height: auto;
+  border-radius: solid 1px;
+  text-align: center !important;
+}
+
+.btn-login2 {
+  background-color: #fff;;
+  color: black;
+  width: 100% !important;
+  border-color: black !important;
+  border-bottom: 2px solid black;
+}
+.btn-login2:hover {
+  background-color: #8d8383;;
+  color: black;
+}
+
+.validation-error {
+    color: red;
+    font-weight: bold;
+}

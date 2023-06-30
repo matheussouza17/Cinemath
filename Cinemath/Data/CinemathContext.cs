@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Cinemath.Services;
+using Microsoft.EntityFrameworkCore;
 using Cinemath.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Cinemath.Services;
 //roomMovie.Id = (await _context.RoomMovie.MaxAsync(e => (int?)e.Id) ?? 0 + 1) + 1;
 namespace Cinemath.Data
 {
@@ -12,12 +11,12 @@ namespace Cinemath.Data
         {
         }
 
-        public DbSet<Cinemath.Models.Movies> Movies { get; set; } = default!;
+        public DbSet<Cinemath.Models.Movie> Movie { get; set; } = default!;
+        public DbSet<Cinemath.Models.User> Users { get; set; } = default!;
+        //public DbSet<Cinemath.Models.RegisterModel> RegisterModel { get; set; } = default!;
 
-        
 
-        public DbSet<Cinemath.Models.Employee> Employee { get; set; } = default!;
-       
+
         public DbSet<BlogPostsCount> BlogPostCounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,6 +31,9 @@ namespace Cinemath.Data
                     });
         }
 
+        public DbSet<Cinemath.Models.WishList> WishList { get; set; } = default!;
+        
+
+        
     }
 }
- 

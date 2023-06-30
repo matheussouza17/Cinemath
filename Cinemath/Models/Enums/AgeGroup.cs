@@ -1,8 +1,8 @@
 ﻿namespace Cinemath.Models.Enums
 {
-    public enum StatusMovie : int
+    public enum AgeGroup : int
     {
-        Started = 0,
+        L = 0,
         Canceled = 1,
         NotStarted = 2
     }
