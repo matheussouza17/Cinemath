@@ -1,4 +1,4 @@
-﻿@model Cinemath.Models.Movies
+﻿@model Cinemath.Models.MovieDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -7,36 +7,111 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Movies</h4>
+    <h4>Movie</h4>
+    @if (!string.IsNullOrEmpty(ViewBag.MovieImageUrl))
+    {
+        <img src="@ViewBag.MovieImageUrl" class="img-movie" alt="Movie image">
+    }
+    else
+    {
+        <p>No image available</p>
+    }
     <hr />
+
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Name)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Description)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Year)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Year)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Year)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Year)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AgeGroup)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.AgeGroup)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AgeGroup)
+        <dd class="col-sm-10">
+            @if (Model.Movie.AgeGroup == 0)
+            {
+                <text>Free</text>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Movie.AgeGroup)
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Gender)
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div style="display: inline-block; margin-right: 10px;">
+        @if (Model.IsInWishList)
+        {
+            <form asp-controller="WishLists" asp-action="RemoveFromWishList" method="post">
+                <input type="hidden" name="movieId" value="@Model.Movie.Id" />
+                <button type="submit" class="custom-button custom-button-red">Remove from wishlist</button>
+            </form>
+        }
+        else
+        {
+            <form asp-controller="WishLists" asp-action="Create" method="post">
+                <input type="hidden" name="movieId" value="@Model.Movie.Id" />
+                <button type="submit" class="custom-button custom-button-green">Add to Wishlist</button>
+            </form>
+        }
+    </div>
+    <a class="custom-button custom-button-yellow" asp-action="Edit" asp-route-id="@Model.Movie.Id">Edit</a>
+    <a class="custom-button custom-button-blue" onclick="goBack()">Back</a>
 </div>
+
+<script>
+    function goBack() {
+        history.back();
+    }
+</script>
+
+<style>
+    .custom-button,
+    .reset-button {
+        padding: 10px 20px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 5px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .custom-button-green {
+        background-color: green;
+    }
+
+    .custom-button-yellow{
+        background-color: yellow;
+    }
+
+    .custom-button-red {
+        background-color: red;
+    }
+
+    .custom-button-blue {
+        background-color: blue;
+    }
+</style>

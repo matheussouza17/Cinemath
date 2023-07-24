@@ -1,8 +1,143 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bem vindo(a)!</h1>
-    <p>Projeto ainda em desenvolvimento!!</p>
+@model HomepageViewModel
+
+<div class="title-cinemath">
+	<h1>CINEMATH</h1>
 </div>
+<div class="search-div">
+	<form method="GET" action="@Url.Action("Search", "Home")" class="search-form">
+		<form method="GET" action="@Url.Action("Search", "Home")" class="search-form">
+			<input type="text" name="searchQuery" placeholder="Search movies by name" class="search-input">
+			<button type="submit" class="search-button">Search</button>
+			<a class="btn reset-button" asp-action="Index">Reset</a>
+		</form>
+
+	</form>
+
+
+</div>
+
+
+<div class="card-container">
+	@if (Model.Movies.Count == 0)
+	{
+		<p>We are sorry, but this movie is not yet in our database...</p>
+	}
+	else
+	{
+
+		@foreach (var movie in Model.Movies)
+		{
+			<div class="card">
+				<div class="card-image">
+					@if (Model.MovieImageUrls.ContainsKey(movie.Id))
+					{
+						<img src="@Model.MovieImageUrls[movie.Id]" class="img-movie2" alt="Movie image">
+					}
+					else
+					{
+						<p>No image available</p>
+					}
+				</div>
+
+				<div class="card-content">
+					<a asp-controller="Movies" asp-action="Details" asp-route-id="@movie?.Id">     <h3>@movie.Name</h3>   </a>
+					<p>Year: @movie.Year</p>
+					<p>Age Group: @(movie.AgeGroup == 0 ? "Free" : movie.AgeGroup.ToString())</p>
+					<p>Gender: @movie.Gender</p>
+				</div>
+			</div>
+		}
+	}
+</div>
+
+
+
+<style>
+	.search-div {
+		margin-bottom: 10px;
+		margin-top: 5px;
+	}
+
+	.search-form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+
+	.search-input {
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		margin-right: 10px;
+	}
+
+	.search-button {
+		padding: 10px 20px;
+		background-color: #4caf50;
+		color: #fff;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	.reset-button {
+		padding: 10px 20px;
+		background-color: blue;
+		color: #fff;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		margin-left: 5px;
+	}
+
+	.search-button:hover {
+		background-color: #45a049;
+	}
+
+	.title-cinemath {
+		text-align: center;
+	}
+
+	.card-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.card {
+		width: 300px;
+		margin-bottom: 20px;
+		background-color: #f5f5f5;
+		border-radius: 5px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		text-align: center;
+	}
+
+	.card-image {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 5px 5px 0 0;
+	}
+
+	.img-movie2 {
+		height: 200px;
+	}
+
+	.card-content {
+		padding: 10px;
+	}
+
+	h3 {
+		margin-top: 0;
+	}
+
+	p {
+		margin: 5px 0;
+	}
+</style>

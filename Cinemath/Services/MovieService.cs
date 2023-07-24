@@ -1,6 +1,5 @@
 ﻿using Cinemath.Data;
 using Cinemath.Models;
-using Microsoft.Data.SqlClient;
 
 //using (SqlConnection connection = new SqlConnection(@"Persist Security Info=False;User ID=developer;Initial Catalog=db-mathcine;Data Source=db-mathcine.database.windows.net"))
 //{
@@ -21,9 +20,9 @@ namespace Cinemath.Services
         {
             _context = context;
         }
-        public List <Movies> FindAll()
+        public List<Movie> FindAll()
         {
-            return _context.Movies.OrderBy(x => x.Name).ToList();
+            return _context.Movie.OrderBy(x => x.Name).ToList();
         }
     }
 }

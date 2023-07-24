@@ -1,7 +1,4 @@
 ﻿using Cinemath.Data;
-using Cinemath.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Cinemath.Services
 {
@@ -12,8 +9,8 @@ namespace Cinemath.Services
         {
             _context = context;
         }
-     
-        
+
+
     }
 
 }

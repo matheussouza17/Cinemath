@@ -1,4 +1,4 @@
-﻿@model Cinemath.Models.Movies
+﻿@model Cinemath.Models.Movie
 
 @{
     ViewData["Title"] = "Create";
@@ -6,42 +6,67 @@
 
 <h1>Create</h1>
 
-<h4>Movies</h4>
+<h4>Movie</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Name</label>
+                <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label">Description</label>
-                <input asp-for="Description" class="form-control" />
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control">Valor pré-definido</textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Year" class="control-label">Year</label>
+                <label asp-for="Year" class="control-label"></label>
                 <input asp-for="Year" class="form-control" />
                 <span asp-validation-for="Year" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AgeGroup" class="control-label">Age Group</label>
-                <input asp-for="AgeGroup" class="form-control" />
+                <label asp-for="AgeGroup" class="control-label">Age Indication</label>
+                <select asp-for="AgeGroup" class="form-control">
+                    <option value="0">Free</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="18">18</option>
+                </select>
                 <span asp-validation-for="AgeGroup" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Gender" class="control-label">Gender</label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Family">Family</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Horror">Horror</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+
+               @* <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create " class="btn btn-save" />
+                <a asp-action="Index" class="btn btn-detail">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
